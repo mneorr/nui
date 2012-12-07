@@ -12,12 +12,12 @@
 
 + (void)render:(UINavigationBar*)bar withClass:(NSString*)class_name
 {
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:class_name]) {
-        [bar setTintColor:[NUISettings getColor:@"background-tint-color" withClass:class_name]];
+    if ([STYLESHEET hasProperty:@"background-tint-color" withClass:class_name]) {
+        [bar setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:class_name]];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:class_name]) {
-        [bar setBackgroundImage:[NUISettings getImage:@"background-image" withClass:class_name] forBarMetrics:UIBarMetricsDefault];
+    if ([STYLESHEET hasProperty:@"background-image" withClass:class_name]) {
+        [bar setBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:class_name] forBarMetrics:UIBarMetricsDefault];
     }
     
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:class_name];

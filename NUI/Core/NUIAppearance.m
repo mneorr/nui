@@ -12,7 +12,7 @@
 
 + (void)initializeWithStylesheet:(NSString *)stylesheet
 {
-    [NUISettings loadStylesheet:stylesheet];
+    [STYLESHEET loadStylesheet:stylesheet];
 
     [self initUINavigationBar];
     [self initUIBarButtonItem];
@@ -29,16 +29,16 @@
         [[UINavigationBar appearance] setTitleTextAttributes:titleTextAttributes];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:ui_class_name]) {
-        [[UINavigationBar appearance] setBackgroundImage:[NUISettings getImage:@"background-image" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
+    if ([STYLESHEET hasProperty:@"background-image" withClass:ui_class_name]) {
+        [[UINavigationBar appearance] setBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
     }
     
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:ui_class_name]) {
-        [[UINavigationBar appearance] setTintColor:[NUISettings getColor:@"background-tint-color" withClass:ui_class_name]];
+    if ([STYLESHEET hasProperty:@"background-tint-color" withClass:ui_class_name]) {
+        [[UINavigationBar appearance] setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:ui_class_name]];
     }
     
-    if ([NUISettings hasProperty:@"background-color" withClass:ui_class_name]) {
-        [[UINavigationBar appearance] setBackgroundImage:[NUISettings getImageFromColor:@"background-color" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
+    if ([STYLESHEET hasProperty:@"background-color" withClass:ui_class_name]) {
+        [[UINavigationBar appearance] setBackgroundImage:[STYLESHEET getImageFromColor:@"background-color" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
     }
     
 }
@@ -55,31 +55,31 @@
         [[ui_class appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     }
     
-    if ([NUISettings hasProperty:@"background-color" withClass:ui_class_name]) {
-        UIImage *backgroundColorImage = [NUIGraphics barButtonWithColor:[NUISettings getColor:@"background-color" withClass:ui_class_name]];
+    if ([STYLESHEET hasProperty:@"background-color" withClass:ui_class_name]) {
+        UIImage *backgroundColorImage = [NUIGraphics barButtonWithColor:[STYLESHEET getColor:@"background-color" withClass:ui_class_name]];
         [[UIBarButtonItem appearance] setBackgroundImage:backgroundColorImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:ui_class_name]) {
-        [[ui_class appearance] setTintColor:[NUISettings getColor:@"background-tint-color" withClass:ui_class_name]];
+    if ([STYLESHEET hasProperty:@"background-tint-color" withClass:ui_class_name]) {
+        [[ui_class appearance] setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:ui_class_name]];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:ui_class_name]) {
-        [[ui_class appearance] setBackgroundImage:[NUISettings getImage:@"background-image" withClass:ui_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    if ([STYLESHEET hasProperty:@"background-image" withClass:ui_class_name]) {
+        [[ui_class appearance] setBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
     NSString *ui_back_class_name = @"UIBackBarButtonItem";
     
-    if ([NUISettings hasProperty:@"background-color" withClass:ui_back_class_name]) {
-        UIImage *backBackgroundColorImage = [NUIGraphics backButtonWithColor:[NUISettings getColor:@"background-color" withClass:ui_back_class_name]];
+    if ([STYLESHEET hasProperty:@"background-color" withClass:ui_back_class_name]) {
+        UIImage *backBackgroundColorImage = [NUIGraphics backButtonWithColor:[STYLESHEET getColor:@"background-color" withClass:ui_back_class_name]];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBackgroundColorImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    } else if ([NUISettings hasProperty:@"background-color" withClass:ui_class_name]) {
-        UIImage *backBackgroundColorImage = [NUIGraphics backButtonWithColor:[NUISettings getColor:@"background-color" withClass:ui_class_name]];
+    } else if ([STYLESHEET hasProperty:@"background-color" withClass:ui_class_name]) {
+        UIImage *backBackgroundColorImage = [NUIGraphics backButtonWithColor:[STYLESHEET getColor:@"background-color" withClass:ui_class_name]];
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBackgroundColorImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:ui_back_class_name]) {
-        [[ui_class appearance] setBackButtonBackgroundImage:[NUISettings getImage:@"background-image" withClass:ui_back_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    if ([STYLESHEET hasProperty:@"background-image" withClass:ui_back_class_name]) {
+        [[ui_class appearance] setBackButtonBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_back_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
 }

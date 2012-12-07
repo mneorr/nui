@@ -13,19 +13,19 @@
 + (void)render:(UITableViewCell*)cell withClass:(NSString*)class_name
 {
     // Set background color
-    if ([NUISettings hasProperty:@"background-color" withClass:class_name]) {
+    if ([STYLESHEET hasProperty:@"background-color" withClass:class_name]) {
         UIView *background = [[UIView alloc] initWithFrame:cell.frame];
-        background.backgroundColor = [NUISettings getColor:@"background-color" withClass:class_name];
+        background.backgroundColor = [STYLESHEET getColor:@"background-color" withClass:class_name];
         cell.backgroundView = background;
     }
     
     // Set background gradient
-    if ([NUISettings hasProperty:@"background-color-top" withClass:class_name]) {
+    if ([STYLESHEET hasProperty:@"background-color-top" withClass:class_name]) {
         CGRect backgroundViewFrame = cell.contentView.frame;
         cell.backgroundView = [[UIView alloc] initWithFrame:backgroundViewFrame];
         CAGradientLayer *gradient = [NUIGraphics
-                                     gradientLayerWithTop:[NUISettings getColor:@"background-color-top" withClass:class_name] 
-                                     withBottom:[NUISettings getColor:@"background-color-bottom" withClass:class_name]
+                                     gradientLayerWithTop:[STYLESHEET getColor:@"background-color-top" withClass:class_name]
+                                     withBottom:[STYLESHEET getColor:@"background-color-bottom" withClass:class_name]
                                      withFrame:cell.bounds];
         [cell.backgroundView.layer addSublayer:gradient];
     }

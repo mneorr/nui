@@ -24,39 +24,39 @@
     }
     
     property = @"font-color";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.textColor = [NUISettings getColor:property withClass:class_name];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.textColor = [STYLESHEET getColor:property withClass:class_name];
     }
     
     property = @"font-color-highlighted";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.highlightedTextColor = [NUISettings getColor:property withClass:class_name];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.highlightedTextColor = [STYLESHEET getColor:property withClass:class_name];
     }
     
     property = @"font-name";
     NSString *size_property = @"font-size";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.font = [UIFont fontWithName:[NUISettings get:property withClass:class_name] size:[NUISettings getFloat:size_property withClass:class_name]];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.font = [UIFont fontWithName:[STYLESHEET get:property withClass:class_name] size:[STYLESHEET getFloat:size_property withClass:class_name]];
     }
     
     property = @"text-alpha";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.alpha = [NUISettings getFloat:property withClass:class_name];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.alpha = [STYLESHEET getFloat:property withClass:class_name];
     }
     
     property = @"text-auto-fit";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        [label setAdjustsFontSizeToFitWidth:[NUISettings getBoolean:property withClass:class_name]];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        [label setAdjustsFontSizeToFitWidth:[STYLESHEET getBoolean:property withClass:class_name]];
     }
     
     property = @"text-shadow-color";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.shadowColor = [NUISettings getColor:property withClass:class_name];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.shadowColor = [STYLESHEET getColor:property withClass:class_name];
     }
     
     property = @"text-shadow-offset";
-    if ([NUISettings hasProperty:property withClass:class_name]) {
-        label.shadowOffset = [NUISettings getSize:property withClass:class_name];
+    if ([STYLESHEET hasProperty:property withClass:class_name]) {
+        label.shadowOffset = [STYLESHEET getSize:property withClass:class_name];
     }
 }
 

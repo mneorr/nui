@@ -17,21 +17,21 @@
 static NUISettings *singleton;
 
 
-+ (void)loadStylesheet:(NSString *)name
+- (void)loadStylesheet:(NSString *)name
 {
-    self.instance.stylesheet = [[NUIStyleParser new] getStylesFromFile:name];
+    self.stylesheet = [[NUIStyleParser new] getStylesFromFile:name];
 }
 
-+ (BOOL)hasProperty:(NSString*)property withExplicitClass:(NSString*)class_name
+- (BOOL)hasProperty:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    NSDictionary *ruleSet = self.instance.stylesheet[class_name];
+    NSDictionary *ruleSet = self.stylesheet[class_name];
     if (ruleSet == nil || ruleSet[property] == nil) {
         return NO;
     }
     return YES;
 }
 
-+ (BOOL)hasProperty:(NSString*)property withClass:(NSString*)class_name
+- (BOOL)hasProperty:(NSString*)property withClass:(NSString*)class_name
 {
     NSArray *classes = [self getClasses:class_name];
     for (NSString *inherited_class in classes) {
@@ -42,13 +42,13 @@ static NUISettings *singleton;
     return NO;
 }
 
-+ (id)get:(NSString*)property withExplicitClass:(NSString*)class_name
+- (id)get:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    NSDictionary *ruleSet = self.instance.stylesheet[class_name];
+    NSDictionary *ruleSet = self.stylesheet[class_name];
     return ruleSet[property];
 }
 
-+ (id)get:(NSString*)property withClass:(NSString*)class_name
+- (id)get:(NSString*)property withClass:(NSString*)class_name
 {
     NSArray *classes = [self getClasses:class_name];
     for (NSString *inherited_class in classes) {
@@ -59,52 +59,52 @@ static NUISettings *singleton;
     return nil;
 }
 
-+ (BOOL)getBoolean:(NSString*)property withClass:(NSString*)class_name
+- (BOOL)getBoolean:(NSString*)property withClass:(NSString*)class_name
 {   
     return [NUIConverter toBoolean:[self get:property withClass:class_name]];
 }
 
-+ (float)getFloat:(NSString*)property withClass:(NSString*)class_name
-{   
+- (float)getFloat:(NSString*)property withClass:(NSString*)class_name
+{
     return [NUIConverter toFloat:[self get:property withClass:class_name]];
 }
 
-+ (CGSize)getSize:(NSString*)property withClass:(NSString*)class_name
+- (CGSize)getSize:(NSString*)property withClass:(NSString*)class_name
 {   
     return [NUIConverter toSize:[self get:property withClass:class_name]];
 }
 
-+ (UIOffset)getOffset:(NSString*)property withClass:(NSString*)class_name
+- (UIOffset)getOffset:(NSString*)property withClass:(NSString*)class_name
 {   
     return [NUIConverter toOffset:[self get:property withClass:class_name]];
 }
 
-+ (UITextBorderStyle)getBorderStyle:(NSString*)property withClass:(NSString*)class_name
+- (UITextBorderStyle)getBorderStyle:(NSString*)property withClass:(NSString*)class_name
 {   
     return [NUIConverter toBorderStyle:[self get:property withClass:class_name]];
 }
 
-+ (UIColor*)getColor:(NSString*)property withClass:(NSString*)class_name
+- (UIColor*)getColor:(NSString*)property withClass:(NSString*)class_name
 {   
     return [NUIConverter toColor:[self get:property withClass:class_name]];
 }
 
-+ (UIColor*)getColorFromImage:(NSString*)property withClass:(NSString*)class_name
+- (UIColor*)getColorFromImage:(NSString*)property withClass:(NSString*)class_name
 {
     return [NUIConverter toColorFromImageName:[self get:property withClass:class_name]];
 }
 
-+ (UIImage*)getImageFromColor:(NSString*)property withClass:(NSString*)class_name
+- (UIImage*)getImageFromColor:(NSString*)property withClass:(NSString*)class_name
 {
     return [NUIConverter toImageFromColorName:[self get:property withClass:class_name]];
 }
 
-+ (UIImage*)getImage:(NSString*)property withClass:(NSString*)class_name
+- (UIImage*)getImage:(NSString*)property withClass:(NSString*)class_name
 {
     return [NUIConverter toImageFromImageName:[self get:property withClass:class_name]];
 }
 
-+ (NSArray*)getClasses:(NSString*)class_name
+- (NSArray*)getClasses:(NSString*)class_name
 {
     NSArray *classes = [[[class_name componentsSeparatedByString: @":"] reverseObjectEnumerator] allObjects];
     return classes;

@@ -16,12 +16,12 @@
     control.segmentedControlStyle = UISegmentedControlStyleBar;
     
     // Set background color
-    if ([NUISettings hasProperty:@"background-color" withClass:class_name]) {
-        [control setBackgroundColor:[NUISettings getColor:@"background-color" withClass:class_name]];
+    if ([STYLESHEET hasProperty:@"background-color" withClass:class_name]) {
+        [control setBackgroundColor:[STYLESHEET getColor:@"background-color" withClass:class_name]];
     }
     // Set background tint color
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:class_name]) {
-        [control setTintColor:[NUISettings getColor:@"background-tint-color" withClass:class_name]];
+    if ([STYLESHEET hasProperty:@"background-tint-color" withClass:class_name]) {
+        [control setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:class_name]];
     }
     
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:class_name];
