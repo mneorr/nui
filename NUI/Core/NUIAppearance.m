@@ -10,9 +10,9 @@
 
 @implementation NUIAppearance
 
-+ (void)initializeWithStylesheet:(NSString *)stylesheet
++ (void)initializeWithStylesheet:(NSString *)fileName
 {
-    [STYLESHEET loadStylesheet:stylesheet];
+    [STYLESHEET loadStylesheet:fileName];
 
     [self initUINavigationBar];
     [self initUIBarButtonItem];
@@ -47,12 +47,11 @@
 {
     
     NSString *ui_class_name = @"UIBarButtonItem";
-    Class ui_class = [UIBarButtonItem class];
     
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:ui_class_name];
     
     if ([[titleTextAttributes allKeys] count] > 0) {
-        [[ui_class appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
+        [[UIBarButtonItem appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     }
     
     if ([STYLESHEET hasProperty:@"background-color" withClass:ui_class_name]) {
@@ -61,11 +60,11 @@
     }
     
     if ([STYLESHEET hasProperty:@"background-tint-color" withClass:ui_class_name]) {
-        [[ui_class appearance] setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:ui_class_name]];
+        [[UIBarButtonItem appearance] setTintColor:[STYLESHEET getColor:@"background-tint-color" withClass:ui_class_name]];
     }
     
     if ([STYLESHEET hasProperty:@"background-image" withClass:ui_class_name]) {
-        [[ui_class appearance] setBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
     NSString *ui_back_class_name = @"UIBackBarButtonItem";
@@ -79,7 +78,7 @@
     }
     
     if ([STYLESHEET hasProperty:@"background-image" withClass:ui_back_class_name]) {
-        [[ui_class appearance] setBackButtonBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_back_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[STYLESHEET getImage:@"background-image" withClass:ui_back_class_name] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
 }
