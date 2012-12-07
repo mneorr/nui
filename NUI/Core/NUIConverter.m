@@ -30,7 +30,7 @@
 
 + (NSNumber*)toNumber:(id)value
 {
-    return [NSNumber numberWithFloat:[value floatValue]];
+    return @([value floatValue]);
 }
 
 + (CGSize)toSize:(NSString*)value

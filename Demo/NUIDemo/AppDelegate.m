@@ -8,35 +8,36 @@
 
 #import "AppDelegate.h"
 
-@implementation AppDelegate {
-    NSMutableArray *demoItems;
-}
+@implementation AppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [NUIAppearance loadStylesheet:@"Blue.NUIStyle"];
+    [NUIAppearance initializeWithStylesheet:@"Blue.NUIStyle"];
     
-    demoItems = [NSMutableArray arrayWithCapacity:20];
-    [demoItems addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                               @"John", @"name",
-                               @"Guitar", @"description",
-                               nil]];
-    [demoItems addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                               @"Paul", @"name",
-                               @"Bass", @"description",
-                               nil]];
-    [demoItems addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                               @"George", @"name",
-                               @"Guitar", @"description",
-                               nil]];
-    [demoItems addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                               @"Ringo", @"name",
-                               @"Drums", @"description",
-                               nil]];
+    NSArray *demoItems = @[
+        @{
+            @"name" : @"John",
+            @"description" : @"Guitar"
+        },
+        @{
+            @"name" : @"Paul",
+            @"description" : @"Bass"
+        },
+        @{
+            @"name" : @"George",
+            @"description" : @"Guitar"
+        },
+        @{
+            @"name" : @"Ringo",
+            @"description" : @"Drums"
+        }
+    ];
+    
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     UINavigationController *navigationController = [[tabBarController viewControllers] objectAtIndex:1];
+
     NUIDemoTableViewController *demoTableViewController = [[navigationController viewControllers] objectAtIndex:0];
     demoTableViewController.demoItems = demoItems;
 

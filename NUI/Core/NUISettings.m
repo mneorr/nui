@@ -9,21 +9,22 @@
 #import "NUISettings.h"
 
 @interface NUISettings ()
-@property(nonatomic,retain) NSDictionary *settings;
+@property(nonatomic,retain) NSDictionary *stylesheet;
 @end
 
 @implementation NUISettings
 
-static NUISettings *singleton = nil;
+static NUISettings *singleton;
+
 
 + (void)loadStylesheet:(NSString *)name
 {
-    self.instance.settings = [[NUIStyleParser new] getStylesFromFile:name];
+    self.instance.stylesheet = [[NUIStyleParser new] getStylesFromFile:name];
 }
 
 + (BOOL)hasProperty:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    NSDictionary *ruleSet = self.instance.settings[class_name];
+    NSDictionary *ruleSet = self.instance.stylesheet[class_name];
     if (ruleSet == nil || ruleSet[property] == nil) {
         return NO;
     }
@@ -43,7 +44,7 @@ static NUISettings *singleton = nil;
 
 + (id)get:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    NSDictionary *ruleSet = self.instance.settings[class_name];
+    NSDictionary *ruleSet = self.instance.stylesheet[class_name];
     return ruleSet[property];
 }
 
@@ -109,11 +110,14 @@ static NUISettings *singleton = nil;
     return classes;
 }
 
+
+#pragma mark - Private
+
 + (NUISettings*)instance
 {
     static dispatch_once_t singletonToken;
     dispatch_once(&singletonToken, ^{
-        singleton = [[self alloc] init];
+        singleton = [NUISettings new];
     });
     
     return singleton;

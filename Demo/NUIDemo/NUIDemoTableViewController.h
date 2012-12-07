@@ -10,6 +10,6 @@
 
 @interface NUIDemoTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *demoItems;
+@property (nonatomic, strong) NSArray *demoItems;
 
 @end

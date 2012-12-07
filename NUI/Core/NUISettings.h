@@ -12,7 +12,11 @@
 
 @interface NUISettings : NSObject
 
+#pragma mark - Initialization
 + (void)loadStylesheet:(NSString*)name;
++ (NUISettings*)instance;
+
+#pragma mark - Public
 + (BOOL)hasProperty:(NSString*)property withClass:(NSString*)class_name;
 + (id)get:(NSString*)property withClass:(NSString*)class_name;
 + (BOOL)getBoolean:(NSString*)property withClass:(NSString*)class_name;

@@ -10,10 +10,10 @@
 
 @implementation NUIAppearance
 
-+ (void)loadStylesheet:(NSString *)stylesheet
++ (void)initializeWithStylesheet:(NSString *)stylesheet
 {
     [NUISettings loadStylesheet:stylesheet];
-    
+
     [self initUINavigationBar];
     [self initUIBarButtonItem];
 }
