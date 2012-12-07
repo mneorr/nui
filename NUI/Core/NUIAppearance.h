@@ -12,6 +12,6 @@
 
 @interface NUIAppearance : NSObject
 
-+ (void)init;
++ (void)loadStylesheet:(NSString *)stylesheet;
 
 @end

@@ -10,8 +10,10 @@
 
 @implementation NUIAppearance
 
-+ (void)init
++ (void)loadStylesheet:(NSString *)stylesheet
 {
+    [NUISettings loadStylesheet:stylesheet];
+    
     [self initUINavigationBar];
     [self initUIBarButtonItem];
 }
@@ -20,24 +22,23 @@
 {
     
     NSString *ui_class_name = @"UINavigationBar";
-    Class ui_class = [UINavigationBar class];
     
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:ui_class_name];
     
     if ([[titleTextAttributes allKeys] count] > 0) {
-        [[ui_class appearance] setTitleTextAttributes:titleTextAttributes];
+        [[UINavigationBar appearance] setTitleTextAttributes:titleTextAttributes];
     }
     
     if ([NUISettings hasProperty:@"background-image" withClass:ui_class_name]) {
-        [[ui_class appearance] setBackgroundImage:[NUISettings getImage:@"background-image" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setBackgroundImage:[NUISettings getImage:@"background-image" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
     }
     
     if ([NUISettings hasProperty:@"background-tint-color" withClass:ui_class_name]) {
-        [[ui_class appearance] setTintColor:[NUISettings getColor:@"background-tint-color" withClass:ui_class_name]];
+        [[UINavigationBar appearance] setTintColor:[NUISettings getColor:@"background-tint-color" withClass:ui_class_name]];
     }
     
     if ([NUISettings hasProperty:@"background-color" withClass:ui_class_name]) {
-        [[ui_class appearance] setBackgroundImage:[NUISettings getImageFromColor:@"background-color" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setBackgroundImage:[NUISettings getImageFromColor:@"background-color" withClass:ui_class_name] forBarMetrics:UIBarMetricsDefault];
     }
     
 }

@@ -10,11 +10,7 @@
 #import "NUIConverter.h"
 #import "NUIStyleParser.h"
 
-@interface NUISettings : NSObject {
-    NSMutableDictionary *settings;
-}
-
-@property(nonatomic,retain)NSMutableDictionary *settings;  
+@interface NUISettings : NSObject
 
 + (void)loadStylesheet:(NSString*)name;
 + (BOOL)hasProperty:(NSString*)property withClass:(NSString*)class_name;

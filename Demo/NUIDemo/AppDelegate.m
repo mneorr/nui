@@ -16,8 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    [NUIAppearance init];
+    [NUIAppearance loadStylesheet:@"Blue.NUIStyle"];
     
     demoItems = [NSMutableArray arrayWithCapacity:20];
     [demoItems addObject:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -40,7 +39,7 @@
     UINavigationController *navigationController = [[tabBarController viewControllers] objectAtIndex:1];
     NUIDemoTableViewController *demoTableViewController = [[navigationController viewControllers] objectAtIndex:0];
     demoTableViewController.demoItems = demoItems;
-    
+
     return YES;
 }
 

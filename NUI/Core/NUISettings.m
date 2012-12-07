@@ -8,26 +8,23 @@
 
 #import "NUISettings.h"
 
+@interface NUISettings ()
+@property(nonatomic,retain) NSDictionary *settings;
+@end
+
 @implementation NUISettings
 
-@synthesize settings;
-static NUISettings *instance = nil;
+static NUISettings *singleton = nil;
 
 + (void)loadStylesheet:(NSString *)name
 {
-    instance = [self getInstance];
-    NUIStyleParser *parser = [[NUIStyleParser alloc] init];
-    instance.settings = [parser getStylesFromFile:name];
+    self.instance.settings = [[NUIStyleParser new] getStylesFromFile:name];
 }
 
 + (BOOL)hasProperty:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    instance = [self getInstance];
-    NSMutableDictionary *ruleSet = [instance.settings objectForKey:class_name];
-    if (ruleSet == nil) {
-        return NO;
-    }
-    if ([ruleSet objectForKey:property] == nil) {
+    NSDictionary *ruleSet = self.instance.settings[class_name];
+    if (ruleSet == nil || ruleSet[property] == nil) {
         return NO;
     }
     return YES;
@@ -46,9 +43,8 @@ static NUISettings *instance = nil;
 
 + (id)get:(NSString*)property withExplicitClass:(NSString*)class_name
 {
-    instance = [self getInstance];
-    NSMutableDictionary *ruleSet = [instance.settings objectForKey:class_name];
-    return [ruleSet objectForKey:property];
+    NSDictionary *ruleSet = self.instance.settings[class_name];
+    return ruleSet[property];
 }
 
 + (id)get:(NSString*)property withClass:(NSString*)class_name
@@ -113,16 +109,14 @@ static NUISettings *instance = nil;
     return classes;
 }
 
-+ (NUISettings*)getInstance
++ (NUISettings*)instance
 {
-    @synchronized(self) {    
-        if(instance == nil) {
-            instance = [NUISettings new];
-            [self loadStylesheet:@"NUIStyle"];
-        }
-    }
+    static dispatch_once_t singletonToken;
+    dispatch_once(&singletonToken, ^{
+        singleton = [[self alloc] init];
+    });
     
-    return instance;
+    return singleton;
 }
 
 @end
